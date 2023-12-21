@@ -1,10 +1,11 @@
 package com.hamburguesa66.scopa.ui
 
 import com.hamburguesa66.scopa.domain.Card
+import com.hamburguesa66.scopa.ui.shared.AvatarPane
+import com.hamburguesa66.scopa.ui.shared.CurrentScoreBox
 import java.awt.GridBagLayout
 import javax.swing.*
 import javax.swing.border.EmptyBorder
-import javax.swing.border.TitledBorder
 
 class CpuPane(
     private val cards: List<Card>,
@@ -27,9 +28,12 @@ class CpuPane(
         cpuHandPanel.isOpaque = false
         cpuHandPanel.layout = BoxLayout(cpuHandPanel, BoxLayout.X_AXIS)
 
-        val cpuAvatar = JLabel(ImageIcon(ResourceLoader.getAvatarSprite()))
-        cpuAvatar.border = TitledBorder("CPU")
-        cpuHandPanel.add(cpuAvatar)
+        cpuHandPanel.add(
+            AvatarPane(
+                image = ResourceLoader.getAvatarSprite(),
+                name = "CPU"
+            )
+        )
 
         cards.forEach {
             val image = if (showCard && it == selectedCard) {
@@ -43,11 +47,11 @@ class CpuPane(
         }
 
         container.add(cpuHandPanel)
-
-        val box = Box.createHorizontalBox()
-        val label1 = JLabel("Cleanings: $cleanings", SwingConstants.LEFT)
-        box.add(label1)
-        container.add(box)
+        container.add(
+            CurrentScoreBox(
+                cleanings = cleanings
+            )
+        )
     }
 
 }

@@ -1,6 +1,7 @@
 package com.hamburguesa66.scopa.ui
 
 import com.hamburguesa66.scopa.domain.PlayerScore
+import com.hamburguesa66.scopa.ui.shared.AvatarPane
 import java.awt.Font
 import java.awt.GridBagLayout
 import java.awt.GridLayout
@@ -54,9 +55,12 @@ class EndGamePane(
         val container = JPanel()
         container.layout = GridBagLayout()
 
-        val playerAvatar = JLabel(ImageIcon(avatarPicture))
-        playerAvatar.border = TitledBorder(playerName)
-        container.add(playerAvatar)
+        container.add(
+            AvatarPane(
+                image = avatarPicture,
+                name = playerName
+            )
+        )
 
         val playerScore = JLabel(score.getFinalScore().toString(), SwingConstants.CENTER)
         playerScore.font = Font(null, Font.PLAIN, 36)
