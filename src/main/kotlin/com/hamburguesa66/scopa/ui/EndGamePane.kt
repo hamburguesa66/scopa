@@ -1,6 +1,6 @@
-package com.example.cards.ui
+package com.hamburguesa66.scopa.ui
 
-import com.example.cards.domain.PlayerScore
+import com.hamburguesa66.scopa.domain.PlayerScore
 import java.awt.Font
 import java.awt.GridBagLayout
 import java.awt.GridLayout

@@ -1,8 +1,8 @@
-package com.example.cards.handlers
+package com.hamburguesa66.scopa.handlers
 
-import com.example.cards.domain.*
-import com.example.cards.domain.strategies.SimpleCpuStrategy
-import com.example.cards.ui.*
+import com.hamburguesa66.scopa.domain.*
+import com.hamburguesa66.scopa.domain.strategies.SimpleCpuStrategy
+import com.hamburguesa66.scopa.ui.*
 import org.springframework.stereotype.Component
 import java.awt.BorderLayout
 import javax.swing.JOptionPane

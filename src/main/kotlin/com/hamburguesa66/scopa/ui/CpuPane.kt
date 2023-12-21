@@ -1,11 +1,10 @@
-package com.example.cards.ui
+package com.hamburguesa66.scopa.ui
 
-import com.example.cards.domain.Card
+import com.hamburguesa66.scopa.domain.Card
 import java.awt.GridBagLayout
 import javax.swing.*
 import javax.swing.border.EmptyBorder
 import javax.swing.border.TitledBorder
-
 
 class CpuPane(
     private val cards: List<Card>,

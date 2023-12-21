@@ -1,4 +1,4 @@
-package com.example.cards.ui
+package com.hamburguesa66.scopa.ui
 
 import java.awt.BorderLayout
 import javax.swing.JComponent

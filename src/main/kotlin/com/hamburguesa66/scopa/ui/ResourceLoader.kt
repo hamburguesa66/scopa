@@ -1,6 +1,6 @@
-package com.example.cards.ui
+package com.hamburguesa66.scopa.ui
 
-import com.example.cards.domain.Card
+import com.hamburguesa66.scopa.domain.Card
 import java.net.URL
 
 class ResourceLoader {

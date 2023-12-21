@@ -1,12 +1,11 @@
-package com.example.cards.ui
+package com.hamburguesa66.scopa.ui
 
-import com.example.cards.handlers.UIHandler
+import com.hamburguesa66.scopa.handlers.UIHandler
 import java.awt.event.ActionEvent
 import javax.swing.AbstractAction
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 import javax.swing.JMenuItem
-
 
 class MenuBar(private val handler: UIHandler) : JMenuBar() {
 

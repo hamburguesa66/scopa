@@ -7,8 +7,8 @@ plugins {
 	kotlin("plugin.spring") version "1.9.20"
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
+group = "com.hamburguesa66"
+version = "0.0.1"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_17
@@ -34,19 +34,3 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
-/* kotlin {
-	macosX64("native") { // on macOS
-		// linuxX64("native") // on Linux
-		// mingwX64("native") // on Windows
-		binaries {
-			executable()
-		}
-	}
-}
-
-tasks.withType<Wrapper> {
-	gradleVersion = "8.1.1"
-	distributionType = Wrapper.DistributionType.BIN
-}
- */

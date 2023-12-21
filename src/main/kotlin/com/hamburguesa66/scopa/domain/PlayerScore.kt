@@ -1,4 +1,4 @@
-package com.example.cards.domain
+package com.hamburguesa66.scopa.domain
 
 data class PlayerScore(
     val cleanings: Int,

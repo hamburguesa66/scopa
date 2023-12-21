@@ -1,7 +1,7 @@
-package com.example.cards.domain
+package com.hamburguesa66.scopa.domain
 
-import com.example.cards.domain.strategies.CpuStrategy
-import com.example.cards.handlers.UIHandler
+import com.hamburguesa66.scopa.domain.strategies.CpuStrategy
+import com.hamburguesa66.scopa.handlers.UIHandler
 
 class Game(
     val aCpuStrategy: CpuStrategy,

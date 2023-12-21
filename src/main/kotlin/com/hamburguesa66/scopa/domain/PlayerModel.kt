@@ -1,4 +1,4 @@
-package com.example.cards.domain
+package com.hamburguesa66.scopa.domain
 
 data class PlayerModel(
     val hand: MutableList<Card> = mutableListOf(),

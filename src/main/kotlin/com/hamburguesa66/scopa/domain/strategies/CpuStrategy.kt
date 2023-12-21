@@ -1,6 +1,6 @@
-package com.example.cards.domain.strategies
+package com.hamburguesa66.scopa.domain.strategies
 
-import com.example.cards.domain.Card
+import com.hamburguesa66.scopa.domain.Card
 
 interface CpuStrategy {
 
