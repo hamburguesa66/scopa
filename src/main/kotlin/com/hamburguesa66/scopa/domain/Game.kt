@@ -24,28 +24,8 @@ class Game(
     }
 
     fun playerMove() {
-        if(player.tableCards.isEmpty()) {
-            player.hand.remove(player.handCard)
-            table.add(player.handCard!!)
-        } else {
-            val score = player.tableCards.sumOf { it.score } + player.handCard!!.score
-            if(score == 15) {
-                player.hand.remove(player.handCard!!)
-                player.deck.add(player.handCard!!)
-                player.tableCards.forEach {
-                    player.deck.add(it)
-                    table.remove(it)
-                }
-                if(table.isEmpty()) {
-                    player.cleanings++
-                }
-            } else {
-                uiHandler.showBadMoveDialog()
-                player.hand.remove(player.handCard!!)
-            }
-        }
-        player.handCard = null
-        player.tableCards.clear()
+        val result = player.executePlay(gameCards = table)
+        if(!result) { uiHandler.showBadMoveDialog() }
 
         // Calculate CPU move
         val play = aCpuStrategy.makeMove(cpu.hand,table)
@@ -57,22 +37,8 @@ class Game(
     }
 
     fun cpuMove() {
-        if(cpu.tableCards.isEmpty()) {
-            cpu.hand.remove(cpu.handCard)
-            table.add(cpu.handCard!!)
-        } else {
-            cpu.hand.remove(cpu.handCard!!)
-            cpu.deck.add(cpu.handCard!!)
-            cpu.tableCards.forEach {
-                cpu.deck.add(it)
-                table.remove(it)
-            }
-            if(table.isEmpty()) { cpu.cleanings++ }
-        }
-        cpu.handCard = null
-        cpu.tableCards.clear()
+        cpu.executePlay(gameCards = table)
         state = GameState.PLAYER_TURN
-
         uiHandler.draw()
     }
 
@@ -90,20 +56,12 @@ class Game(
     }
 
     fun selectTableCard(aCard: Card) {
-        if(player.tableCards.contains(aCard)) {
-            player.tableCards.remove(aCard)
-        } else {
-            player.tableCards.add(aCard)
-        }
+        player.addOrRemoveTableCard(aCard)
         uiHandler.draw()
     }
 
     fun selectHandCard(aCard: Card) {
-        player.handCard = if(player.handCard == aCard) {
-            null
-        } else {
-            aCard
-        }
+        player.setOrClearHandCard(aCard)
         uiHandler.draw()
     }
 
