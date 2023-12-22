@@ -1,7 +1,9 @@
 package com.hamburguesa66.scopa.ui
 
 import com.hamburguesa66.scopa.domain.PlayerScore
+import com.hamburguesa66.scopa.handlers.ResourceHandler
 import com.hamburguesa66.scopa.ui.shared.AvatarPane
+import com.hamburguesa66.scopa.ui.shared.BasePane
 import java.awt.Font
 import java.awt.GridBagLayout
 import java.awt.GridLayout
@@ -14,12 +16,9 @@ import javax.swing.table.DefaultTableModel
 class EndGamePane(
     val playerScore : PlayerScore,
     val cpuScore: PlayerScore
-) : JPanel() {
+) : BasePane() {
 
     init {
-        isOpaque = false
-        layout = GridBagLayout()
-
         val container = JPanel()
         container.isOpaque = false
         container.layout = BoxLayout(container, BoxLayout.Y_AXIS)
@@ -27,12 +26,12 @@ class EndGamePane(
         val scoreboardPanel = JPanel()
         scoreboardPanel.layout = GridLayout(0,2)
         scoreboardPanel.add(createPlayerScorePanel(
-            avatarPicture = ResourceLoader.getAvatarSprite(),
+            avatarPicture = ResourceHandler.getSprite(ResourceHandler.Sprite.SKELETON_AVATAR),
             playerName = "CPU",
             score = cpuScore
         ))
         scoreboardPanel.add(createPlayerScorePanel(
-            avatarPicture = ResourceLoader.getAvatarSprite(),
+            avatarPicture = ResourceHandler.getSprite(ResourceHandler.Sprite.SKELETON_AVATAR),
             playerName = "Player",
             score = playerScore
         ))

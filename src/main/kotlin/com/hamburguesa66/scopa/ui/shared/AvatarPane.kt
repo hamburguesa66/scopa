@@ -9,7 +9,6 @@ class AvatarPane(
     private val image: URL,
     private val name: String
 ) : JLabel() {
-
     init {
         icon = ImageIcon(image)
         border = TitledBorder(name)

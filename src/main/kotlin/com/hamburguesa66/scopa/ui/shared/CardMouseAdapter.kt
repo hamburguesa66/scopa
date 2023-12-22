@@ -1,6 +1,7 @@
-package com.hamburguesa66.scopa.ui
+package com.hamburguesa66.scopa.ui.shared
 
 import com.hamburguesa66.scopa.domain.Card
+import com.hamburguesa66.scopa.handlers.ResourceHandler
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.ImageIcon
@@ -15,17 +16,17 @@ class CardMouseAdapter(
 
     override fun mouseEntered(e: MouseEvent?) {
         getComponentAsJLabel(e).icon = if (isCardSelected) {
-            ImageIcon(ResourceLoader.getCardSprite(card, ResourceLoader.CardSpriteType.HOVER_ALT))
+            ImageIcon(ResourceHandler.getCardSprite(card, ResourceHandler.CardSpriteType.HOVER_ALT))
         } else {
-            ImageIcon(ResourceLoader.getCardSprite(card,ResourceLoader.CardSpriteType.HOVER))
+            ImageIcon(ResourceHandler.getCardSprite(card, ResourceHandler.CardSpriteType.HOVER))
         }
     }
 
     override fun mouseExited(e: MouseEvent?) {
         getComponentAsJLabel(e).icon = if (isCardSelected ) {
-            ImageIcon(ResourceLoader.getCardSprite(card,ResourceLoader.CardSpriteType.SELECT))
+            ImageIcon(ResourceHandler.getCardSprite(card, ResourceHandler.CardSpriteType.SELECT))
         } else {
-            ImageIcon(ResourceLoader.getCardSprite(card,ResourceLoader.CardSpriteType.NORMAL))
+            ImageIcon(ResourceHandler.getCardSprite(card, ResourceHandler.CardSpriteType.NORMAL))
         }
     }
 

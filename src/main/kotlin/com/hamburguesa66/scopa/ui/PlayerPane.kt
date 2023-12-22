@@ -1,12 +1,13 @@
 package com.hamburguesa66.scopa.ui
 
 import com.hamburguesa66.scopa.domain.Card
+import com.hamburguesa66.scopa.handlers.ResourceHandler
 import com.hamburguesa66.scopa.ui.shared.AvatarPane
+import com.hamburguesa66.scopa.ui.shared.BasePane
+import com.hamburguesa66.scopa.ui.shared.CardMouseAdapter
 import com.hamburguesa66.scopa.ui.shared.CurrentScoreBox
-import java.awt.GridBagLayout
 import javax.swing.*
 import javax.swing.border.EmptyBorder
-import javax.swing.border.TitledBorder
 
 class PlayerPane(
     private val cards: List<Card>,
@@ -14,12 +15,9 @@ class PlayerPane(
     private val enableCardSelection: Boolean,
     private val onCardSelection : (aCard: Card) -> Unit,
     private val cleanings: Int
-) : JPanel() {
+) : BasePane() {
 
     init {
-        isOpaque = false
-        layout = GridBagLayout()
-
         val container = JPanel()
         container.isOpaque = false
         container.layout = BoxLayout(container, BoxLayout.Y_AXIS)
@@ -32,21 +30,21 @@ class PlayerPane(
 
         playerCardsPanel.add(
             AvatarPane(
-                image = ResourceLoader.getAvatarSprite(),
+                image = ResourceHandler.getSprite(ResourceHandler.Sprite.SKELETON_AVATAR),
                 name = "Player"
             )
         )
 
         cards.forEach {
             val image = if (it == selectedCard) {
-                ResourceLoader.getCardSprite(it,ResourceLoader.CardSpriteType.SELECT)
+                ResourceHandler.getCardSprite(it, ResourceHandler.CardSpriteType.SELECT)
             } else {
-                ResourceLoader.getCardSprite(it,ResourceLoader.CardSpriteType.NORMAL)
+                ResourceHandler.getCardSprite(it, ResourceHandler.CardSpriteType.NORMAL)
             }
-            val label = JLabel(ImageIcon(image))
-            label.border = EmptyBorder(10, 10, 10, 10)
+            val cardLabel = JLabel(ImageIcon(image))
+            cardLabel.border = EmptyBorder(10, 10, 10, 10)
             if(enableCardSelection) {
-                label.addMouseListener(
+                cardLabel.addMouseListener(
                     CardMouseAdapter(
                         card = it,
                         isCardSelected = selectedCard == it,
@@ -54,7 +52,7 @@ class PlayerPane(
                     )
                 )
             }
-            playerCardsPanel.add(label)
+            playerCardsPanel.add(cardLabel)
         }
 
         container.add(
