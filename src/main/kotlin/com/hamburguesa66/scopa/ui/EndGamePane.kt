@@ -110,13 +110,15 @@ class EndGamePane(
         val container = JPanel()
         container.layout = GridLayout(1,0)
 
-        val winnerName = if(playerScore.getFinalScore() > cpuScore.getFinalScore()) {
-            "Player"
+        val message = if(playerScore.getFinalScore() > cpuScore.getFinalScore()) {
+            "The Player wins"
+        } else if(playerScore.getFinalScore() < cpuScore.getFinalScore()) {
+            "The CPU wins"
         } else {
-            "CPU"
+            "Draw"
         }
 
-        container.add(JLabel("$winnerName wins", SwingConstants.CENTER))
+        container.add(JLabel(message, SwingConstants.CENTER))
         return container
     }
 
