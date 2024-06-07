@@ -17,6 +17,11 @@ class MenuBar(private val handler: UIHandler) : JMenuBar() {
                 handler.startNewGame()
             }
         })
+        val settingsItem = JMenuItem(object : AbstractAction("Settings") {
+            override fun actionPerformed(e: ActionEvent) {
+                handler.openSettings()
+            }
+        })
         val exitItem = JMenuItem(object : AbstractAction("Exit") {
             override fun actionPerformed(e: ActionEvent) {
                 handler.exit()
@@ -24,6 +29,7 @@ class MenuBar(private val handler: UIHandler) : JMenuBar() {
         })
 
         fileMenu.add(newGameItem)
+        fileMenu.add(settingsItem)
         fileMenu.add(exitItem)
 
         add(fileMenu)

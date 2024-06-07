@@ -14,6 +14,7 @@ class CpuPane(
     private val cards: List<Card>,
     private val selectedCard: Card?,
     private val showCard: Boolean,
+    private val showScore: Boolean,
     private val score: PlayerScore
 ) : BasePane() {
 
@@ -50,11 +51,14 @@ class CpuPane(
         }
 
         container.add(cpuHandPanel)
-        container.add(
-            CurrentScoreBox(
-                score = score
+
+        if(showScore) {
+            container.add(
+                CurrentScoreBox(
+                    score = score
+                )
             )
-        )
+        }
     }
 
 }

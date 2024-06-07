@@ -2,17 +2,22 @@ package com.hamburguesa66.scopa.handlers
 
 import com.hamburguesa66.scopa.domain.*
 import com.hamburguesa66.scopa.domain.strategies.SimpleCpuStrategy
+import com.hamburguesa66.scopa.domain.system.Settings
 import com.hamburguesa66.scopa.ui.*
+import com.hamburguesa66.scopa.ui.system.SettingsPane
 import org.springframework.stereotype.Component
 import java.awt.BorderLayout
 import javax.swing.JOptionPane
 import kotlin.system.exitProcess
 
 @Component
-class UIHandler {
+class UIHandler(
+    private val settingsHandler: SettingsHandler
+) {
 
     private val mainFrame : MainFrame = MainFrame()
     private lateinit var game : Game
+    private lateinit var settings : Settings
 
     init {
         mainFrame.addPane(TitlePane(), BorderLayout.CENTER)
@@ -24,6 +29,7 @@ class UIHandler {
 
     fun startNewGame() {
         game = Game(aCpuStrategy = SimpleCpuStrategy(), uiHandler = this)
+        settings = settingsHandler.settings.copy()
         game.start()
     }
 
@@ -34,6 +40,7 @@ class UIHandler {
                 cards = game.cpu.hand,
                 selectedCard = game.cpu.handCard,
                 showCard = game.state == GameState.CPU_MOVE,
+                showScore = settings.showScore,
                 score = game.cpu.getScore()
             ),
             BorderLayout.NORTH
@@ -48,6 +55,7 @@ class UIHandler {
                 selectedCard = game.player.handCard,
                 enableCardSelection = game.state == GameState.PLAYER_TURN,
                 onCardSelection = game::selectHandCard,
+                showScore = settings.showScore,
                 score = game.player.getScore()
             ),
             BorderLayout.SOUTH
@@ -130,6 +138,11 @@ class UIHandler {
     fun showGameOverDialog() {
         JOptionPane.showMessageDialog(mainFrame, "There are no cards left in the deck. Game Over.")
     }
+
+    fun openSettings() = SettingsPane(
+        mainFrame = mainFrame,
+        settingsHandler = settingsHandler
+    )
 
     fun exit() {
         exitProcess(0)

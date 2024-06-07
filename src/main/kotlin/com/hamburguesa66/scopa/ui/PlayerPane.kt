@@ -15,7 +15,8 @@ class PlayerPane(
     private val selectedCard: Card?,
     private val enableCardSelection: Boolean,
     private val onCardSelection : (aCard: Card) -> Unit,
-    private val score: PlayerScore
+    private val showScore: Boolean,
+    private val score: PlayerScore,
 ) : BasePane() {
 
     init {
@@ -57,11 +58,13 @@ class PlayerPane(
             playerCardsPanel.add(cardLabel)
         }
 
-        container.add(
-            CurrentScoreBox(
-                score = score
+        if(showScore) {
+            container.add(
+                CurrentScoreBox(
+                    score = score
+                )
             )
-        )
+        }
 
         container.add(playerCardsPanel)
     }
