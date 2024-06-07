@@ -1,6 +1,7 @@
 package com.hamburguesa66.scopa.ui
 
 import com.hamburguesa66.scopa.domain.Card
+import com.hamburguesa66.scopa.domain.PlayerScore
 import com.hamburguesa66.scopa.handlers.ResourceHandler
 import com.hamburguesa66.scopa.ui.shared.AvatarPane
 import com.hamburguesa66.scopa.ui.shared.BasePane
@@ -14,7 +15,7 @@ class PlayerPane(
     private val selectedCard: Card?,
     private val enableCardSelection: Boolean,
     private val onCardSelection : (aCard: Card) -> Unit,
-    private val cleanings: Int
+    private val score: PlayerScore
 ) : BasePane() {
 
     init {
@@ -31,7 +32,8 @@ class PlayerPane(
         playerCardsPanel.add(
             AvatarPane(
                 image = ResourceHandler.getSprite(ResourceHandler.Sprite.SKELETON_AVATAR),
-                name = "Player"
+                name = "Player",
+                useAltNamePosition = true
             )
         )
 
@@ -57,7 +59,7 @@ class PlayerPane(
 
         container.add(
             CurrentScoreBox(
-                cleanings = cleanings
+                score = score
             )
         )
 

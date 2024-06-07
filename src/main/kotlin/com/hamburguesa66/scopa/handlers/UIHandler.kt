@@ -34,7 +34,7 @@ class UIHandler {
                 cards = game.cpu.hand,
                 selectedCard = game.cpu.handCard,
                 showCard = game.state == GameState.CPU_MOVE,
-                cleanings = game.cpu.cleanings
+                score = game.cpu.getScore()
             ),
             BorderLayout.NORTH
         )
@@ -48,7 +48,7 @@ class UIHandler {
                 selectedCard = game.player.handCard,
                 enableCardSelection = game.state == GameState.PLAYER_TURN,
                 onCardSelection = game::selectHandCard,
-                cleanings = game.player.cleanings
+                score = game.player.getScore()
             ),
             BorderLayout.SOUTH
         )

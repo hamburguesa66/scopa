@@ -1,6 +1,7 @@
 package com.hamburguesa66.scopa.ui
 
 import com.hamburguesa66.scopa.domain.Card
+import com.hamburguesa66.scopa.domain.PlayerScore
 import com.hamburguesa66.scopa.handlers.ResourceHandler
 import com.hamburguesa66.scopa.ui.shared.AvatarPane
 import com.hamburguesa66.scopa.ui.shared.BasePane
@@ -13,7 +14,7 @@ class CpuPane(
     private val cards: List<Card>,
     private val selectedCard: Card?,
     private val showCard: Boolean,
-    private val cleanings: Int
+    private val score: PlayerScore
 ) : BasePane() {
 
     init {
@@ -51,7 +52,7 @@ class CpuPane(
         container.add(cpuHandPanel)
         container.add(
             CurrentScoreBox(
-                cleanings = cleanings
+                score = score
             )
         )
     }
