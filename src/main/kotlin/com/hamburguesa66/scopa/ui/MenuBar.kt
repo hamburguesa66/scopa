@@ -1,38 +1,37 @@
 package com.hamburguesa66.scopa.ui
 
+import com.hamburguesa66.scopa.handlers.ResourceHandler
 import com.hamburguesa66.scopa.handlers.UIHandler
-import java.awt.event.ActionEvent
-import javax.swing.AbstractAction
-import javax.swing.JMenu
+import com.hamburguesa66.scopa.ui.system.MenuItem
+import com.hamburguesa66.scopa.ui.system.MenuItemGroup
 import javax.swing.JMenuBar
-import javax.swing.JMenuItem
 
 class MenuBar(private val handler: UIHandler) : JMenuBar() {
 
     init {
-        val fileMenu = JMenu("File")
-
-        val newGameItem = JMenuItem(object : AbstractAction("New Game") {
-            override fun actionPerformed(e: ActionEvent) {
-                handler.startNewGame()
-            }
-        })
-        val settingsItem = JMenuItem(object : AbstractAction("Settings") {
-            override fun actionPerformed(e: ActionEvent) {
-                handler.openSettings()
-            }
-        })
-        val exitItem = JMenuItem(object : AbstractAction("Exit") {
-            override fun actionPerformed(e: ActionEvent) {
-                handler.exit()
-            }
-        })
-
-        fileMenu.add(newGameItem)
-        fileMenu.add(settingsItem)
-        fileMenu.add(exitItem)
-
-        add(fileMenu)
+        add(
+            MenuItemGroup(
+                title = "File",
+                emoji = ResourceHandler.Emoji.FOLDER,
+                items = listOf(
+                    MenuItem(
+                        title = "New Game",
+                        callback = handler::startNewGame,
+                        emoji = ResourceHandler.Emoji.ROCKET
+                    ),
+                    MenuItem(
+                        title = "Settings",
+                        callback = handler::openSettings,
+                        emoji = ResourceHandler.Emoji.NUT_AND_BOLT
+                    ),
+                    MenuItem(
+                        title = "Exit",
+                        callback = handler::exit,
+                        emoji = ResourceHandler.Emoji.DOOR
+                    )
+                )
+            )
+        )
     }
 
 }

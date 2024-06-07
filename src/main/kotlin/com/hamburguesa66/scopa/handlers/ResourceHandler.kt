@@ -17,6 +17,12 @@ class ResourceHandler {
         DECK("/deck.png"),
         SKELETON_AVATAR("/avatar.png"),
     }
+    enum class Emoji(val url: String) {
+        FOLDER("/emojis/folder.png"),
+        ROCKET("/emojis/rocket.png"),
+        NUT_AND_BOLT("/emojis/nut-and-bolt.png"),
+        DOOR("/emojis/door.png")
+    }
     companion object {
         fun getCardSprite(aCard: Card, type: CardSpriteType) : URL {
             var rootFolder = "/${aCard.suite.toString().lowercase()}/"
@@ -25,6 +31,7 @@ class ResourceHandler {
             return getResource("${rootFolder}${fileName}")
         }
         fun getSprite(sprite: Sprite) = getResource(sprite.url)
+        fun getEmoji(emoji: Emoji) = getResource(emoji.url)
         private fun getResource(path: String) : URL =
             ResourceHandler::class.java.getResource(path)!!
     }
