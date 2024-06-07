@@ -7,7 +7,7 @@ class Game(
     val aCpuStrategy: CpuStrategy,
     val uiHandler: UIHandler
 ) {
-    private val deck : MutableList<Card> = getDeck().shuffled().toMutableList()
+    val deck : MutableList<Card> = getNewDeck().shuffled().toMutableList()
     lateinit var state: GameState
     val table: MutableList<Card> = mutableListOf()
     val player: PlayerModel = PlayerModel()
@@ -65,7 +65,7 @@ class Game(
         uiHandler.draw()
     }
 
-    private fun getDeck() = CardSuite.entries
+    private fun getNewDeck() = CardSuite.entries
         .map { suite -> (1..10).map { Card(suite,it) } }
         .flatten()
 }

@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder
 import javax.swing.border.EtchedBorder
 
 class TableHandPane(
+    private val deck: List<Card>,
     private val cards: List<Card>,
     private val selectedCards: List<Card>,
     private val submitButtonText: String,
@@ -33,7 +34,9 @@ class TableHandPane(
 
         val deckImage = JLabel(ImageIcon(ResourceHandler.getSprite(ResourceHandler.Sprite.DECK)))
         deckImage.border = EmptyBorder(10, 10, 10, 10)
-        tablePanel.add(deckImage)
+        if(deck.isNotEmpty()) {
+            tablePanel.add(deckImage)
+        }
 
         cards.forEach {
             val image = if (selectedCards.contains(it) ) {

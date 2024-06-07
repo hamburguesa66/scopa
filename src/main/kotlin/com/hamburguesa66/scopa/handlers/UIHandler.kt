@@ -59,6 +59,7 @@ class UIHandler {
     private fun buildTablePane(): TableHandPane {
         return when(game.state) {
             GameState.CPU_MOVE -> TableHandPane(
+                deck = game.deck,
                 cards = game.table,
                 selectedCards = game.cpu.tableCards,
                 submitButtonText = "Continue",
@@ -68,6 +69,7 @@ class UIHandler {
                 onSubmit = this::confirmCpuPlay
             )
             GameState.PLAYER_TURN -> TableHandPane(
+                deck = game.deck,
                 cards = game.table,
                 selectedCards = game.player.tableCards,
                 submitButtonText = "Submit Play",
@@ -77,6 +79,7 @@ class UIHandler {
                 onSubmit = this::submitPlayerMove
             )
             GameState.ENDED -> TableHandPane(
+                deck = game.deck,
                 cards = game.table,
                 selectedCards = emptyList(),
                 submitButtonText = "End Game",
