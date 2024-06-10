@@ -15,7 +15,8 @@ class CpuPane(
     private val selectedCard: Card?,
     private val showCard: Boolean,
     private val showScore: Boolean,
-    private val score: PlayerScore
+    private val score: PlayerScore,
+    private val avatar: ResourceHandler.Sprite
 ) : BasePane() {
 
     init {
@@ -34,7 +35,7 @@ class CpuPane(
 
         cpuHandPanel.add(
             AvatarPane(
-                image = ResourceHandler.getSprite(ResourceHandler.Sprite.SKELETON_AVATAR),
+                image = ResourceHandler.getSprite(avatar),
                 name = "CPU"
             )
         )

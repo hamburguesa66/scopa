@@ -1,7 +1,6 @@
 package com.hamburguesa66.scopa.handlers
 
 import com.hamburguesa66.scopa.domain.*
-import com.hamburguesa66.scopa.domain.strategies.SimpleCpuStrategy
 import com.hamburguesa66.scopa.domain.system.Settings
 import com.hamburguesa66.scopa.ui.*
 import com.hamburguesa66.scopa.ui.system.SettingsPane
@@ -28,8 +27,13 @@ class UIHandler(
     }
 
     fun startNewGame() {
-        game = Game(aCpuStrategy = SimpleCpuStrategy(), uiHandler = this)
         settings = settingsHandler.settings.copy()
+        game = Game(
+            aCpuStrategy = settingsHandler.cpuAlgorithmOptionMapper.optionToStrategy(
+                settings.cpuAlgorithm
+            ),
+            uiHandler = this
+        )
         game.start()
     }
 
@@ -41,7 +45,8 @@ class UIHandler(
                 selectedCard = game.cpu.handCard,
                 showCard = game.state == GameState.CPU_MOVE,
                 showScore = settings.showScore,
-                score = game.cpu.getScore()
+                score = game.cpu.getScore(),
+                avatar = settingsHandler.cpuAlgorithmOptionMapper.optionToSprite(settings.cpuAlgorithm)
             ),
             BorderLayout.NORTH
         )
@@ -122,7 +127,8 @@ class UIHandler(
         mainFrame.addPane(
             EndGamePane(
                 playerScore = playerScore,
-                cpuScore = cpuScore
+                cpuScore = cpuScore,
+                cpuAvatar = settingsHandler.cpuAlgorithmOptionMapper.optionToSprite(settings.cpuAlgorithm)
             ),
             BorderLayout.CENTER
         )

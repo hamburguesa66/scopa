@@ -15,7 +15,8 @@ import javax.swing.table.DefaultTableModel
 
 class EndGamePane(
     val playerScore : PlayerScore,
-    val cpuScore: PlayerScore
+    val cpuScore: PlayerScore,
+    private val cpuAvatar: ResourceHandler.Sprite
 ) : BasePane() {
 
     init {
@@ -26,12 +27,12 @@ class EndGamePane(
         val scoreboardPanel = JPanel()
         scoreboardPanel.layout = GridLayout(0,2)
         scoreboardPanel.add(createPlayerScorePanel(
-            avatarPicture = ResourceHandler.getSprite(ResourceHandler.Sprite.SKELETON_AVATAR),
+            avatarPicture =  ResourceHandler.getSprite(cpuAvatar),
             playerName = "CPU",
             score = cpuScore
         ))
         scoreboardPanel.add(createPlayerScorePanel(
-            avatarPicture = ResourceHandler.getSprite(ResourceHandler.Sprite.SKELETON_AVATAR),
+            avatarPicture = ResourceHandler.getSprite(ResourceHandler.Sprite.MIKE_AVATAR),
             playerName = "Player",
             score = playerScore
         ))

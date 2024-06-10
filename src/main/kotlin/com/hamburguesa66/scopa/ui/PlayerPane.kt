@@ -32,7 +32,7 @@ class PlayerPane(
 
         playerCardsPanel.add(
             AvatarPane(
-                image = ResourceHandler.getSprite(ResourceHandler.Sprite.SKELETON_AVATAR),
+                image = ResourceHandler.getSprite(ResourceHandler.Sprite.MIKE_AVATAR),
                 name = "Player",
                 useAltNamePosition = true
             )

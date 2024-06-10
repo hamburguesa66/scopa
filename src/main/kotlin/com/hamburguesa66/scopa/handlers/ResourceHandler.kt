@@ -15,7 +15,9 @@ class ResourceHandler {
         COMPANY_LOGO("/company-logo.png"),
         FACE_DOWN_CARD("/card-back.png"),
         DECK("/deck.png"),
-        SKELETON_AVATAR("/avatar.png"),
+        MIKE_AVATAR("/avatars/mike.jpg"),
+        MONICA_AVATAR("/avatars/monica.jpg"),
+        EMILY_AVATAR("/avatars/emily.jpg"),
     }
     enum class Emoji(val url: String) {
         FOLDER("/emojis/folder.png"),
