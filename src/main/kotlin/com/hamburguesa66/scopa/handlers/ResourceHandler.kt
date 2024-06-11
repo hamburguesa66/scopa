@@ -14,6 +14,7 @@ class ResourceHandler {
         GAME_LOGO("/game-logo.png"),
         COMPANY_LOGO("/company-logo.png"),
         FACE_DOWN_CARD("/card-back.png"),
+        BLANK_CARD("/blank-card.png"),
         DECK("/deck.png"),
         MIKE_AVATAR("/avatars/mike.jpg"),
         MONICA_AVATAR("/avatars/monica.jpg"),
