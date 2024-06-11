@@ -6,6 +6,7 @@ import com.hamburguesa66.scopa.handlers.ResourceHandler
 import com.hamburguesa66.scopa.ui.shared.AvatarPane
 import com.hamburguesa66.scopa.ui.shared.BasePane
 import com.hamburguesa66.scopa.ui.shared.CurrentScoreBox
+import java.awt.FlowLayout
 import java.awt.GridBagLayout
 import javax.swing.*
 import javax.swing.border.EmptyBorder
@@ -21,7 +22,8 @@ class CpuPane(
 
     init {
         isOpaque = false
-        layout = GridBagLayout()
+        layout = FlowLayout(FlowLayout.LEFT)
+        border = EmptyBorder(0,if(showScore) 20 else 58,0,0)
 
         val container = JPanel()
         container.isOpaque = false
@@ -51,12 +53,19 @@ class CpuPane(
             cpuHandPanel.add(label)
         }
 
+        (1..(3 - cards.size)).forEach { _ ->
+            val aux = JLabel(ImageIcon(ResourceHandler.getSprite(ResourceHandler.Sprite.BLANK_CARD)))
+            aux.border = EmptyBorder(10, 10, 10, 10)
+            cpuHandPanel.add(aux)
+        }
+
         container.add(cpuHandPanel)
 
         if(showScore) {
             container.add(
                 CurrentScoreBox(
-                    score = score
+                    score = score,
+                    padding = EmptyBorder(0,40,0,0)
                 )
             )
         }
